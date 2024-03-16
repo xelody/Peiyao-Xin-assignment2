@@ -1,0 +1,64 @@
+.simulation {
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    flex-direction: column;
+    grid-gap: 1px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+}
+
+
+.cell {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+}
+
+.cell.alive {
+    background-color: black;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.controls button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.input-fields {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+}
+
+.input-fields input {
+    width: 50px;
+    margin-right: 10px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.input-fields button {
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #cc837e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.input-fields button:hover {
+    background-color: #89cff0;
+}

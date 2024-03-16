@@ -1,0 +1,23 @@
+p, ol {
+    color: #595959;
+    font-size: 20px;
+}
+
+.intro-wrapper {
+    margin: 0 10%;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav a:hover {
+    color: #89cff0;
+}
+
+.page {
+    padding: 20px;
+    margin-top: 80px;
+}
