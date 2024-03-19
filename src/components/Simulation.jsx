@@ -7,17 +7,26 @@ import '../styles/common.css';
 import '../styles/Box.css';
 import UpdateGridSize from './UpdateGridSize';
 import initializeGrid from './InitializeBoxComponent';
+import getNextGrid from './GetNextGrid';
+import getRandomGrid from './RandomGrid';
 
 const Simulation = () => {
     const [running, setRunning] = useState(false);
 
-    const [gridState] = useContext(GridContext);
+    const [gridState,updateGridSize, updateBox] = useContext(GridContext);
 
     let gridComponent = initializeGrid(gridState.rows, gridState.columns);
 
-    const toggleSimulation = () => {
-        setRunning(!running);
-    };  
+    const simulateOneStep = () => {
+        const newGrid = getNextGrid({ boxGrid: gridState.boxGrid, rows: gridState.rows, columns: gridState.columns });
+        updateBox(newGrid);
+    }
+
+    const resetGrid = () => {
+        const newGrid = getRandomGrid(gridState.rows, gridState.columns);
+        updateBox(newGrid);
+    }
+
 
     return (
 
@@ -30,10 +39,10 @@ const Simulation = () => {
                 {gridComponent}
             </div>
             <div className="controls">
-                <button onClick={toggleSimulation}>
-                    {running ? 'Stop Simulation' : 'Start Simulation'}
+                <button onClick={simulateOneStep}>
+                    Next Step
                 </button>
-                <button onClick={initializeGrid}>Reset Grid</button>
+                <button onClick={resetGrid}>Reset Grid</button>
             </div>
         </div>
     );

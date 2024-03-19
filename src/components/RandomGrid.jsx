@@ -1,4 +1,4 @@
-export default function getRandomGrid(r, c, probability = 0.05) {
+export default function getRandomGrid(r, c, probability = 0.10) {
     const grid = [];
 
     for (let i = 0; i < r; i++) {
