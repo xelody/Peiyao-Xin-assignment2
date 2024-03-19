@@ -1,0 +1,13 @@
+.box {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+}
+
+.alive {
+    background-color: black;
+}
+
+.box-row {
+    display: flex;
+}

@@ -1,0 +1,27 @@
+.input-fields {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+}
+
+.input-fields input {
+    width: 70px;
+    margin-right: 10px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.input-fields button {
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #cc837e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.input-fields button:hover {
+    background-color: #89cff0;
+}
