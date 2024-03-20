@@ -24,7 +24,7 @@ export function GridProvider(props) {
     const updateGridSize = (newRows, newColumns) => {
         setRows(newRows);
         setColumns(newColumns);
-        const { newGrid, newHeatGrid } = getRandomGrid(newRows, newColumns);
+        const { randomGrid: newGrid, heatGrid: newHeatGrid } = getRandomGrid(newRows, newColumns);
         setGridStateContext(prevState => ({
             ...prevState,
             boxGrid: newGrid,
