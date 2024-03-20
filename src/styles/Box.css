@@ -13,39 +13,39 @@
 }
 
 .first {
-    background-color: #0C1519;
-}
-
-.second {
-    background-color: #172A32;
-}
-
-.third {
     background-color: #023E8A;
 }
 
+.second {
+    background-color: #0A549B;
+}
+
+.third {
+    background-color: #166EAE;
+}
+
 .fourth {
-    background-color: #0077B6;
+    background-color: #2289C1;
 }
 
 .fifth {
-    background-color: #0096C7;
+    background-color: #2FA4D4;
 }
 
 .sixth {
-    background-color: #00B4D8;
+    background-color: #3BBFE8;
 }
 
 .seventh {
-    background-color: #48CAE4;
+    background-color: #47DAFB;
 }
 
 .eighth {
-    background-color: #90E0EF;
+    background-color: #7CE7FF;
 }
 
 .nineth {
-    background-color: #ADE8F4;
+    background-color: #B1F4FF;
 }
 
 .ten-and-above {

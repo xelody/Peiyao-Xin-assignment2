@@ -32,7 +32,7 @@ export default function Box(props) {
             className += " eighth";
         } else if (heatValue === 9) {
             className += " nineth";
-        } else if (heatValue === 10) {
+        } else if (heatValue >= 10) {
             className += " ten-and-above";
         }
 

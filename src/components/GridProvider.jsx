@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import getRandomGrid from './RandomGrid';
 
 export const GridContext = createContext();
@@ -25,34 +25,34 @@ export function GridProvider(props) {
         setRows(newRows);
         setColumns(newColumns);
         const { newGrid, newHeatGrid } = getRandomGrid(newRows, newColumns);
-        setGridStateContext({
-            ...gridStateContext,
+        setGridStateContext(prevState => ({
+            ...prevState,
             boxGrid: newGrid,
             rows: newRows,
             columns: newColumns,
             activeBox: countActiveBoxes(newGrid),
             heatMapGrid: newHeatGrid,
-        });
+        }));
     };
 
     const updateBox = (newGrid, newHeatGrid) => {
         const newCount = countActiveBoxes(newGrid);
         setCount(newCount);
 
-        setGridStateContext({
-            ...gridStateContext,
+        setGridStateContext(prevState => ({
+            ...prevState,
             boxGrid: newGrid,
             activeBox: newCount,
             heatMapGrid: newHeatGrid,
-        });
+        }));
     };
 
     const toggleHeatMapMode = () => {
         setIsHeatMapMode(prevMode => !prevMode);
-        setGridStateContext({
-            ...gridStateContext,
-            isHeatMapMode: isHeatMapMode,
-        });
+        setGridStateContext(prevState => ({
+            ...prevState,
+            isHeatMapMode: !prevState.isHeatMapMode,
+        }));
     };
 
     function countActiveBoxes(grid) {

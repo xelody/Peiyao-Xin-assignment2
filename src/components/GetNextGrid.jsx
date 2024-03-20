@@ -56,8 +56,8 @@ function applyRules(currentGrid, numRows, numCols, currentHeatGrid) {
 }
 
 const getNextGrid = ({boxGrid, rows, columns, heatGrid}) => {
-    const { newGrid, newHeatGrid } = applyRules(boxGrid, rows, columns, heatGrid);
-    return { newGrid: newGrid, newHeatGrid: newHeatGrid };
+    const { nextGrid, nextHeatGrid } = applyRules(boxGrid, rows, columns, heatGrid);
+    return { newGrid: nextGrid, newHeatGrid: nextHeatGrid };
 };
 
 export default getNextGrid;

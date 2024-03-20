@@ -14,15 +14,15 @@ const Simulation = () => {
     const [running, setRunning] = useState(false);
 
     const [gridState, updateGridSize, updateBox, toggleHeatMapMode] = useContext(GridContext);
-    const isHeatMapMode = gridState.isHeatMapMode;
+    let isHeatMapMode = gridState.isHeatMapMode;
 
     let gridComponent = initializeGrid(gridState.rows, gridState.columns);
 
     const simulateOneStep = () => {
-        console.log("Heat Grid:", gridState.heatMapGrid);
         const {newGrid, newHeatGrid} = getNextGrid({ boxGrid: gridState.boxGrid, 
             rows: gridState.rows, columns: gridState.columns, 
             heatGrid: gridState.heatMapGrid});
+
         updateBox(newGrid, newHeatGrid);
     }
 
