@@ -11,3 +11,43 @@
 .box-row {
     display: flex;
 }
+
+.first {
+    background-color: #0C1519;
+}
+
+.second {
+    background-color: #172A32;
+}
+
+.third {
+    background-color: #023E8A;
+}
+
+.fourth {
+    background-color: #0077B6;
+}
+
+.fifth {
+    background-color: #0096C7;
+}
+
+.sixth {
+    background-color: #00B4D8;
+}
+
+.seventh {
+    background-color: #48CAE4;
+}
+
+.eighth {
+    background-color: #90E0EF;
+}
+
+.nineth {
+    background-color: #ADE8F4;
+}
+
+.ten-and-above {
+    background-color: #CAF0F8;
+}

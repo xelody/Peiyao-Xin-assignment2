@@ -1,8 +1,9 @@
 import React from 'react';
 
 // Function to apply the rules and generate the next state of the grid
-function applyRules(currentGrid, numRows, numCols) {
+function applyRules(currentGrid, numRows, numCols, currentHeatGrid) {
     const nextGrid = [];
+    const nextHeatGrid = [];
 
     // Function to count the number of live neighbors for a cell
     function countNeighbors(x, y) {
@@ -29,27 +30,34 @@ function applyRules(currentGrid, numRows, numCols) {
 
     for (let i = 0; i < numRows; i++) {
         const newRow = [];
+        const newHeatRow = [];
         for (let j = 0; j < numCols; j++) {
             const neighbors = countNeighbors(i, j);
             const isAlive = currentGrid[i][j];
 
             if (isAlive && (neighbors < 2 || neighbors > 3)) {
                 newRow.push(false); // Rule 1 and 3: box dies
+                newHeatRow.push(1);
             } else if (!isAlive && neighbors === 3) {
                 newRow.push(true); // Rule 4: Dead box becomes alive
+                newHeatRow.push(-1);
             } else {
                 newRow.push(isAlive); // Rule 2: Box lives
+                if (!isAlive && currentHeatGrid[i][j] > 0) {
+                    newHeatRow.push(currentHeatGrid[i][j] + 1);
+                }
             }
         }
         nextGrid.push(newRow);
+        nextHeatGrid.push(newHeatRow);
     }
 
-    return nextGrid;
+    return { nextGrid: nextGrid, nextHeatGrid: nextHeatGrid };
 }
 
-const getNextGrid = ({boxGrid, rows, columns}) => {
-    const nextGrid = applyRules(boxGrid, rows, columns);
-    return nextGrid;
+const getNextGrid = ({boxGrid, rows, columns, heatGrid}) => {
+    const { newGrid, newHeatGrid } = applyRules(boxGrid, rows, columns, heatGrid);
+    return { newGrid: newGrid, newHeatGrid: newHeatGrid };
 };
 
 export default getNextGrid;

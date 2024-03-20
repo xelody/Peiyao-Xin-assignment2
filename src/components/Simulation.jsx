@@ -13,13 +13,17 @@ import getRandomGrid from './RandomGrid';
 const Simulation = () => {
     const [running, setRunning] = useState(false);
 
-    const [gridState,updateGridSize, updateBox] = useContext(GridContext);
+    const [gridState, updateGridSize, updateBox, toggleHeatMapMode] = useContext(GridContext);
+    const isHeatMapMode = gridState.isHeatMapMode;
 
     let gridComponent = initializeGrid(gridState.rows, gridState.columns);
 
     const simulateOneStep = () => {
-        const newGrid = getNextGrid({ boxGrid: gridState.boxGrid, rows: gridState.rows, columns: gridState.columns });
-        updateBox(newGrid);
+        console.log("Heat Grid:", gridState.heatMapGrid);
+        const {newGrid, newHeatGrid} = getNextGrid({ boxGrid: gridState.boxGrid, 
+            rows: gridState.rows, columns: gridState.columns, 
+            heatGrid: gridState.heatMapGrid});
+        updateBox(newGrid, newHeatGrid);
     }
 
     const resetGrid = () => {
@@ -29,11 +33,13 @@ const Simulation = () => {
 
 
     return (
-
         <div className="simulation">
             <Nav />
             <h1>Conway's Game of Life</h1>
             <UpdateGridSize />
+            <button id='heatMapButton' onClick={toggleHeatMapMode}>
+                {isHeatMapMode ? 'Switch to Regular Mode' : 'Switch to Heatmap Mode'}
+            </button>
             <h3>Number of Active Boxes: {gridState.activeBox}</h3>
             <div className='grid-container'>
                 {gridComponent}

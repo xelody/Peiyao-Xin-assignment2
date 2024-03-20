@@ -7,31 +7,35 @@ export function GridProvider(props) {
     const [rows, setRows] = useState(20);
     const [columns, setColumns] = useState(20);
 
-    const randomGrid = getRandomGrid(rows, columns);
+    const { randomGrid, heatGrid } = getRandomGrid(rows, columns);
 
     const [count, setCount] = useState(countActiveBoxes(randomGrid));
+    const [isHeatMapMode, setIsHeatMapMode] = useState(false);
 
     const [gridStateContext, setGridStateContext] = useState({
         activeBox: count,
         boxGrid: randomGrid,
         rows: rows,
         columns: columns,
+        heatMapGrid: heatGrid,
+        isHeatMapMode: isHeatMapMode,
     });
 
     const updateGridSize = (newRows, newColumns) => {
         setRows(newRows);
         setColumns(newColumns);
-        const newGrid = getRandomGrid(newRows, newColumns);
+        const { newGrid, newHeatGrid } = getRandomGrid(newRows, newColumns);
         setGridStateContext({
             ...gridStateContext,
             boxGrid: newGrid,
             rows: newRows,
             columns: newColumns,
             activeBox: countActiveBoxes(newGrid),
+            heatMapGrid: newHeatGrid,
         });
     };
 
-    const updateBox = (newGrid) => {
+    const updateBox = (newGrid, newHeatGrid) => {
         const newCount = countActiveBoxes(newGrid);
         setCount(newCount);
 
@@ -39,6 +43,15 @@ export function GridProvider(props) {
             ...gridStateContext,
             boxGrid: newGrid,
             activeBox: newCount,
+            heatMapGrid: newHeatGrid,
+        });
+    };
+
+    const toggleHeatMapMode = () => {
+        setIsHeatMapMode(prevMode => !prevMode);
+        setGridStateContext({
+            ...gridStateContext,
+            isHeatMapMode: isHeatMapMode,
         });
     };
 
@@ -55,7 +68,7 @@ export function GridProvider(props) {
     };
 
     return (
-        <GridContext.Provider value={[gridStateContext, updateGridSize, updateBox, countActiveBoxes]}>
+        <GridContext.Provider value={[gridStateContext, updateGridSize, updateBox, toggleHeatMapMode, countActiveBoxes]}>
             {props.children}
         </GridContext.Provider>
     );
