@@ -40,8 +40,10 @@ export default function Box(props) {
 
     const toggleBoxState = () => {
         const newGrid = [...stateContext.boxGrid];
+        const newHeatGrid = [...stateContext.heatMapGrid];
         newGrid[props.x][props.y] = !newGrid[props.x][props.y];
-        updateBox(newGrid);
+        newHeatGrid[props.x][props.y] = -1;
+        updateBox(newGrid, newHeatGrid);
     };
 
 

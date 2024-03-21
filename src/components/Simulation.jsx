@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import Nav from './Nav';
 import { GridContext } from './GridProvider';
 
@@ -12,6 +12,8 @@ import getRandomGrid from './RandomGrid';
 
 const Simulation = () => {
     const [running, setRunning] = useState(false);
+    const [step, setStep] = useState(0);
+    const intervalRef = useRef(null);
 
     const [gridState, updateGridSize, updateBox, toggleHeatMapMode] = useContext(GridContext);
     let isHeatMapMode = gridState.isHeatMapMode;
@@ -24,14 +26,33 @@ const Simulation = () => {
             heatGrid: gridState.heatMapGrid});
 
         updateBox(newGrid, newHeatGrid);
+        setStep(step + 1);
     }
 
     const resetGrid = () => {
         const { randomGrid, heatGrid } = getRandomGrid(gridState.rows, gridState.columns);
         updateBox(randomGrid, heatGrid);
     }
-    
 
+    const handleNextStep = () => {
+        simulateOneStep();
+    };
+
+    const handleAutoplay = () => {
+        setRunning(!running); 
+    };
+
+    useEffect(() => {
+        intervalRef.current = setTimeout(() => {
+            if (running) {
+                simulateOneStep();
+            }
+            clearTimeout(intervalRef.current)
+        }, 100);
+
+        // Cleanup function to clear the timeout on component unmount
+        return () => clearTimeout(intervalRef.current);
+    }, [running, step]);
 
     return (
         <div className="simulation">
@@ -46,8 +67,11 @@ const Simulation = () => {
                 {gridComponent}
             </div>
             <div className="controls">
-                <button onClick={simulateOneStep}>
+                <button onClick={handleNextStep}>
                     Next Step
+                </button>
+                <button onClick={handleAutoplay}>
+                    {running ? 'Stop Autoplay' : 'Start Autoplay'}
                 </button>
                 <button onClick={resetGrid}>Reset Grid</button>
             </div>

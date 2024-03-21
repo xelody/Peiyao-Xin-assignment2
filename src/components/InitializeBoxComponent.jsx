@@ -7,9 +7,9 @@ export default function initializeGrid(rows, cols) {
     for (let i = 0; i < rows; i++) {
         const rowComponent = [];
         for (let j = 0; j < cols; j++) {
-            rowComponent.push(<Box x={i} y={j}/>);
+            rowComponent.push(<Box key={`box-${i}-${j}`} x={i} y={j}/>);
         }
-        gridComponent.push(<div className='box-row'>{rowComponent}</div>);
+        gridComponent.push(<div key={`boxRow-${i}`} className='box-row'>{rowComponent}</div>);
     }
     return gridComponent;
 }
