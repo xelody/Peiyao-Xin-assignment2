@@ -1,11 +1,18 @@
-# React + Vite
+# Project 2 - Conway's Game of Life
+https://peiyao-xin-assignment2.onrender.com/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Write-up
+1. What were some challenges you faced while making this app?<br />
+     The first chanllege I encontered was figuring out how the global state and local state work and interact, especially how to maintain a global state of the grid. Additionally, implementing the heatmap is also chanllenging given the color of the cells changes when the cell lives and dies. Lastly, it took me sometime to understand how to use useEffect for the autoplay feature.
 
-Currently, two official plugins are available:
+2. Given more time, what additional features, functional or design changes would you make?<br />
+     If given more time, I'd like to try to implement the Longer Lasting Cells in the Extra Credits. I'd also like to conduct thorough performance testing to optimize the clustering algorithm for better efficiency or implement a more sophisticated method for determing the number of clusters based on the characteristics of data or user preferences for better user experience. Additing a 3D visualization would also be an interesing feature, allowing users to observe the Game of Life in a three-dimensional space with depth and perspective.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. What assumptions did you make while working on this assignment?<br />
+    I assumed that the implementation would be single-threaded, which means all computations and updates on the grid are sequential. I assumed that the grid would be finite in size so that cells at the edges of the grid do not have neighbors beyond the grid boundaries. I assumed that the state of the grid (alive/dead cells) would be stored directly in memory using data structures (using matrix).
+
+4. How long did this assignment take to complete?<br />
+    It took me about ~27 hours to complete this project.
 
 ## Cluster logic
 The game works best when cells are clustered together. In order to perform that, I developed a randomlized algorithm to generate the clusterized grid.
