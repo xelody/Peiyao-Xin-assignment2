@@ -30,6 +30,9 @@ const Simulation = () => {
     }
 
     const resetGrid = () => {
+        if (running) {
+            setRunning(!running);
+        }
         const { randomGrid, heatGrid } = getRandomGrid(gridState.rows, gridState.columns);
         updateBox(randomGrid, heatGrid);
     }

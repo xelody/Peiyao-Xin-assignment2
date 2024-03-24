@@ -43,8 +43,11 @@ function applyRules(currentGrid, numRows, numCols, currentHeatGrid) {
                 newHeatRow.push(-1);
             } else {
                 newRow.push(isAlive); // Rule 2: Box lives
-                if (!isAlive && currentHeatGrid[i][j] > 0) {
+                
+                if (!isAlive && currentHeatGrid[i][j] >= 0) {
                     newHeatRow.push(currentHeatGrid[i][j] + 1);
+                } else {
+                    newHeatRow.push(currentHeatGrid[i][j]);
                 }
             }
         }
