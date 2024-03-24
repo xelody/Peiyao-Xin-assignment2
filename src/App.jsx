@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Simulation from './components/Simulation';
 import Credits from './components/Credits';
@@ -10,11 +10,11 @@ const App = () => {
         <GridProvider>
             <Router>
                 <div className="app">
-                    <Switch>
-                        <Route path="/" exact component={Home} />
-                        <Route path="/simulation" component={Simulation} />
-                        <Route path="/credits" component={Credits} />
-                    </Switch>
+                    <Routes>
+                        <Route path="/" exact element={Home} />
+                        <Route path="/simulation" element={Simulation} />
+                        <Route path="/credits" element={Credits} />
+                    </Routes>
                 </div>
             </Router>
         </GridProvider>
